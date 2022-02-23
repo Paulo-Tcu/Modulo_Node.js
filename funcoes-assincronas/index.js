@@ -17,15 +17,59 @@ function randomNumberBetween(min = 2000, max = 7000) {
     })
   }
   
-  // chamar usando async
-  (async () => {
-    try {
-        const aleatorio = await randomNumberAsync();
-        console.log(`O valor retornado pela Promisse foi: ${aleatorio} segundos.`);
-    }
-    catch (err){
-        console.log(`Deu ruim !!! ${err}`)
-    }
-  })();
+// chamar usando async
+//   (async () => {
+//     try {
+//         const aleatorio = await randomNumberAsync();
+//         console.log(`O valor retornado pela Promisse foi: ${aleatorio} segundos.`);
+//     }
+//     catch (err){
+//         console.log(`Deu ruim !!! ${err}`)
+//     }
+//   })();
 
-  // chamar usando then/catch
+// chamar usando then/catch
+//   randomNumberAsync()
+//   .then((resultado) => {
+//     console.log(`[then/catch] then: ${resultado}`);
+//   })
+//   .catch((err) => {
+//     console.info(`[then/catch] catch: ${err}`);
+//   });
+
+// Promisse.all
+const arrayPromisses = [
+    randomNumberAsync(),
+    randomNumberAsync(),
+    randomNumberAsync()
+]
+
+/* 
+promise.all retoanr quando todas forem resolvidas
+ou quando uma delas for rejeitada
+*/
+// Promise
+//     .all(arrayPromisses)
+//     .then(result => {
+//         result.forEach(i => {
+//             console.log(`Valor gerado: ${i}`);
+//         })
+//     })
+//     .catch(err => {
+//         console.log(`Erro no array de promisse: ${err}`)
+//     })
+
+/*
+promise.allSettled retorna as promisses seja
+resolvidas ou rejeitas em forma de objeto.
+*/
+
+Promise
+    .allSettled(arrayPromisses)
+    .then(result => {
+        result.filter(v => v.status === 'fulfilled')
+        .forEach((v, indice) => console.log(`Valor da ${indice+1} Promise resolvida é: ${v.value} segundos`))
+    })
+    .catch(err => {
+        console.log(`Erro no array de promises: ${err}`)
+    })
