@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "lint": "eslint ./1aula.js"
+
   },
   "author": "Paulo",
   "license": "ISC",
