@@ -13,4 +13,17 @@ const filePatch = path.join(__dirname, 'file.txt');
 // console.log('Agora sim é o final');
 
 // 3 metodo de sintaxe
-fs.promises.readFile(filePatch, 'utf-8').then((res) => console.log(`Esta executando numa Promisse\nEste arquivo é ${res}`));
+// fs.promises.readFile(filePatch, 'utf-8').then((res) => console.log(`Esta executando numa Promisse\nEste arquivo é ${res}`));
+
+const filePatch2 = path.join(__dirname, 'file2.txt');
+const dataAgora = Date.now();
+
+function readCallback(err, data){
+    const linhas = data.split('\n')
+    console.log(`Isso tá rodando no callback do readfile\n\n ${linhas[0]}\n`);
+    console.log(`\nTempo dentro do callback ${(Date.now() - dataAgora) /1000}`);
+}
+
+fs.readFile(filePatch2, 'utf-8', readCallback);
+console.log('E aqui tem algo muito importante pra executar\n');
+console.log(`\nTempo antes do Callback: ${(Date.now() - dataAgora)/1000}`);
