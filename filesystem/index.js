@@ -12,5 +12,5 @@ const filePatch = path.join(__dirname, 'file.txt');
 // console.log('Reposta do readFileSync', data);
 // console.log('Agora sim é o final');
 
-// 3 metodo se sintaxe
+// 3 metodo de sintaxe
 fs.promises.readFile(filePatch, 'utf-8').then((res) => console.log(`Esta executando numa Promisse\nEste arquivo é ${res}`));
