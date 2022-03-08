@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { dirname } = require('path');
 const fsPromises = require('fs').promises;
 const path = require('path');
 
