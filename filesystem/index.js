@@ -48,7 +48,10 @@ fs.readdir(__dirname, (err, files) => {
     files.forEach(f => {
         const fPath = path.join(__dirname, f);
         fs.stat(fPath, (err, fileStatus) => {
-            console.log(`Arquivo: ${f}\t Um arquivo? : ${fileStatus.isFile() ? 'Sim' : 'Não'}`);
+            let type;
+            if(fileStatus.isFile() === true) type = 'File';
+            else if(fileStatus.isDirectory() === true) type = 'Dire';
+            console.log(`File: ${f.substring(0,8)}\t isFile or isDir : ${type}\t\t${fileStatus.size}\tBytes`);
         })
     })
 })
