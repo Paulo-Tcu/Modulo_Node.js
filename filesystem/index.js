@@ -52,6 +52,6 @@ fs.readdir(__dirname, (err, files) => {
             if(fileStatus.isFile() === true) type = 'File';
             else if(fileStatus.isDirectory() === true) type = 'Dire';
             console.log(`File: ${f.substring(0,8)}\t isFile or isDir : ${type}\t\t${fileStatus.size}\tBytes`);
-        })
-    })
-})
+        });
+    });
+});
