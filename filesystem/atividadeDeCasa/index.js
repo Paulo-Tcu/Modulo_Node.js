@@ -24,7 +24,7 @@ Promise.all(arrPromises).then(res => {
     res.forEach( file => {
         resultado += file+' '
     });
-    fs.writeFile(fileResultado, resultado,{encoding: 'utf-8', flag:'a'}, function (err){
+    fs.writeFile(fileResultado, resultado,{encoding: 'utf-8'}, function (err){
         if(err) throw err;
         console.log('Arquivo Salvo!')
     });
