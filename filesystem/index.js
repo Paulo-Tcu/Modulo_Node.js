@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { dirname } = require('path');
 const fsPromises = require('fs').promises;
 const path = require('path');
 
@@ -30,14 +31,24 @@ const dataAgora = Date.now();
 // console.log(`\nTempo antes do Callback: ${(Date.now() - dataAgora)/1000}`);
 
 //async await
-async function lerArquivoAsync(){
-    try{
-        const data = await fsPromises.readFile(filePatch2, 'utf-8');
-        const lines = data.split('.');
-        return lines[0];
-    } catch (err){
-        throw new Error('Não deu pra ler o arquivo !!!');
-    }
-}
+// async function lerArquivoAsync(){
+//     try{
+//         const data = await fsPromises.readFile(filePatch2, 'utf-8');
+//         const lines = data.split('.');
+//         return lines[0];
+//     } catch (err){
+//         throw new Error('Não deu pra ler o arquivo !!!');
+//     }
+// }
 
-lerArquivoAsync().then(res => console.log(res));
+// lerArquivoAsync().then(res => console.log(res));
+
+//readdir -- verificando se o conteudo dentro do diretorio é um arquivo usando readdir e stat
+fs.readdir(__dirname, (err, files) => {
+    files.forEach(f => {
+        const fPath = path.join(__dirname, f);
+        fs.stat(fPath, (err, fileStatus) => {
+            console.log(`Arquivo: ${f}\t Um arquivo? : ${fileStatus.isFile() ? 'Sim' : 'Não'}`);
+        })
+    })
+})
