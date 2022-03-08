@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "ascii-art": "^2.8.5",
+    "dotenv": "^16.0.0",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
