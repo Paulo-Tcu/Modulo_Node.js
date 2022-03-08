@@ -1,7 +1,36 @@
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
 const server = http.createServer();
 
+const file1 = path.join(__dirname, 'file1.txt');
+const file2 = path.join(__dirname, 'file2.txt');
+const file3 = path.join(__dirname, 'file3.txt');
+
+/* 
+async function lerReadFile(arquivo){
+    try{
+        return await fs.promises.readFile(arquivo, 'utf-8');
+    }
+    catch(err){
+        throw new Error('Deu ruim :/');
+    }
+};
+
+const arrPromises = [
+    lerReadFile(file1),
+    lerReadFile(file2),
+    lerReadFile(file3)
+];
+
+Promise.all(arrPromises).then(res => {
+    return res;
+}),
+*/
+const data1 = fs.readFileSync(file1, 'utf-8');
+const data2 = fs.readFileSync(file2, 'utf-8');
+const data3 = fs.readFileSync(file3, 'utf-8');
 server.on('request', (req, res) => {
     const {method, url} = req;
 
@@ -9,11 +38,11 @@ server.on('request', (req, res) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({    
-            nome: 'Paulo',
-            atividade: 'Tipo arquivo: Json',
-            curso: '#BoraSerTech'
+            nome: data1,
+            atividade: data2,
+            curso: data3
     
-        }))
+        }));
     }
 
     else if(method === 'GET' && url === '/html'){
