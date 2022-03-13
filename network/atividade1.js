@@ -8,7 +8,7 @@ const file1 = path.join(__dirname, 'file1.txt');
 const file2 = path.join(__dirname, 'file2.txt');
 const file3 = path.join(__dirname, 'file3.txt');
 
-/* 
+
 async function lerReadFile(arquivo){
     try{
         return await fs.promises.readFile(arquivo, 'utf-8');
@@ -26,23 +26,26 @@ const arrPromises = [
 
 Promise.all(arrPromises).then(res => {
     return res;
-}),
-*/
-const data1 = fs.readFileSync(file1, 'utf-8');
-const data2 = fs.readFileSync(file2, 'utf-8');
-const data3 = fs.readFileSync(file3, 'utf-8');
+})
+
+// const data1 = fs.readFileSync(file1, 'utf-8');
+// const data2 = fs.readFileSync(file2, 'utf-8');
+// const data3 = fs.readFileSync(file3, 'utf-8');
 server.on('request', (req, res) => {
     const {method, url} = req;
 
     if(method === 'POST' && url === '/json'){
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({    
-            nome: data1,
-            atividade: data2,
-            curso: data3
-    
-        }));
+        Promise.all(arrPromises).then(resultado => {
+        
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({    
+                nome: resultado[0],
+                Curso: resultado[1],
+                escola: resultado[2]
+        
+            }));
+        });
     }
 
     else if(method === 'GET' && url === '/html'){
@@ -63,7 +66,7 @@ server.on('request', (req, res) => {
     if(method === 'PUT' && url === '/text'){
         res.statusCode = 200;
         res.write('Ola Mundo');
-        res.end()
+        res.end();
     }
 })
 
