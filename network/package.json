@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon atividade1.js",
+    "dev": "nodemon index_api2.js",
     "lint": "eslint ./index.js"
   },
   "author": "Paulo",
