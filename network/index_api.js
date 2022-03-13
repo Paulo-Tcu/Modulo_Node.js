@@ -2,7 +2,7 @@ const fsPromise = require('fs').promises;
 const path = require('path');
 const https = require('https');
 
-function fetchPokemon(id = 1) {
+function fetchPokemon(id = 5) {
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
     const pokeURL = `${BASE_URL}${id}`;
   
